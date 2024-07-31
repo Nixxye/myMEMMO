@@ -1,5 +1,6 @@
 import customtkinter
 import json
+import re
 from states.State import State
 
 CATEGORIES_FILE = "./entities/gui/states/data/categories.json"
@@ -9,35 +10,61 @@ class Add(State):
         super().__init__(gui)
         self.viewButton = None
         self.addButton = None
+        self.checkboxes = []
         
     def enter(self, type):
-        #FRAMES:
-        self.mainFrame = customtkinter.CTkScrollableFrame(master=self.gui) #Scrollable frame
-        self.titleFrame = createFrameTitle(master=self.mainFrame, title=type+" Title")
-        self.categoryFrame = createFrameTitle(master=self.mainFrame, title="Categories")
-        self.scoreFrame = createFrameTitle(master=self.mainFrame, title="Score")
-        self.dateFrame = createFrameTitle(master=self.mainFrame, title="Date")
-        self.textFrame = createFrameTitle(master=self.mainFrame, title="Review")
-
-        #GRID CONFIGURATION:
         self.gui.grid_rowconfigure(0, weight=1)
         self.gui.grid_columnconfigure(0, weight=1)
-
-        self.mainFrame.grid(row=0, column=0, columnspan=2, rowspan=2, padx=20, pady=20, sticky="nsew")
+        #FRAMES:
+        self.mainFrame = customtkinter.CTkScrollableFrame(master=self.gui)
+        self.mainFrame.grid(row=1, column=0, columnspan=2, rowspan=2, padx=20, pady=20, sticky="nsew")
         self.mainFrame.grid_rowconfigure(0, weight=1)
         self.mainFrame.grid_columnconfigure(0, weight=1)
-        
-        self.titleFrame.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
-        self.categoryFrame.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
-        self.scoreFrame.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
-        self.dateFrame.grid(row=3, column=0, padx=20, pady=20, sticky="nsew")
-        self.textFrame.grid(row=4, column=0, padx=20, pady=20, sticky="nsew")
+
+        self.headerFrame = customtkinter.CTkFrame(master=self.gui)
+        self.returnButton = customtkinter.CTkButton(master=self.headerFrame, command=self.returnState) #ADD image later
+        self.title = customtkinter.CTkLabel(master=self.headerFrame, text="Description")
+        self.headerFrame.grid(row=0, column=0,columnspan=2, padx=20, pady=20, sticky="nsew")
+        self.returnButton.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
+        self.title.grid(row=0, column=1, padx=20, pady=20, sticky="nsew")
+
+        self.titleFrame = createFrameTitle(master=self.mainFrame, title=type+" Title")
+        self.titleEntry = customtkinter.CTkEntry(self.titleFrame, placeholder_text	="Lord of the Rings")
+        self.titleFrame.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+        self.titleEntry.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+
+        self.categoryFrame = createFrameTitle(master=self.mainFrame, title="Categories")
+        self.categoryFrame.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
+
+        self.scoreFrame = createFrameTitle(master=self.mainFrame, title="Score")
+        vcmd = (self.gui.register(validateNumber), '%P')
+        # ARRUMAR PROBLEMA (PLACEHOLDER NÃO ESTÁ APARECENDO)
+        self.scoreEntry = customtkinter.CTkEntry(self.scoreFrame, placeholder_text="0-100", validate="key", validatecommand=vcmd)
+        self.scoreFrame.grid(row=3, column=0, padx=20, pady=20, sticky="nsew")
+        self.scoreEntry.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+
+        self.dateFrame = createFrameTitle(master=self.mainFrame, title="Date")
+        vcmdDate = (self.gui.register(validateDate), '%P')
+        self.dateEntry = customtkinter.CTkEntry(self.dateFrame, placeholder_text="MM/YYYY", validate="key", validatecommand=vcmdDate)
+        self.dateFrame.grid(row=4, column=0, padx=20, pady=20, sticky="nsew")
+        self.dateEntry.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+
+        self.textFrame = createFrameTitle(master=self.mainFrame, title="Review")
+        self.reviewTextbox = customtkinter.CTkTextbox(self.textFrame)
+        self.textFrame.grid(row=5, column=0, padx=20, pady=20, sticky="nsew")
+        self.reviewTextbox.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+
+        self.submitButton = customtkinter.CTkButton(master=self.mainFrame, text="Submit", command=self.submit)
+        self.submitButton.grid(row=7, column=0, padx=20, pady=20, sticky="nsew")
 
         self.addCategories(type)
 
-    def add(self):
+    def submit(self):
+        pass
+
+    def returnState(self):
         self.gui.setState(self.gui.chooseType)
-    
+
     def addCategories(self, type):
         try:
             with open(CATEGORIES_FILE, "r") as file:
@@ -50,6 +77,8 @@ class Add(State):
 
                     removeButton = customtkinter.CTkButton(self.categoryFrame, text="Remove", command=lambda c=categorie, t=type: self.removeCategory(c, t))
                     removeButton.grid(row=index, column=1, padx=20, pady=20, sticky="nsew")
+
+                    self.checkboxes.append(checkbox)
                     index += 1
                 
                 entry = customtkinter.CTkEntry(self.categoryFrame, placeholder_text	="Add new category")
@@ -98,8 +127,7 @@ class Add(State):
             print("Erro ao decodificar o arquivo JSON.")
         except Exception as e:
             print(f"Ocorreu um erro: {e}")
-    def view(self):
-        pass
+
 
 def createFrameTitle(master, title, corner_radius=6, fg_color="gray30"):
     titleFrame = customtkinter.CTkFrame(master=master)
@@ -110,3 +138,11 @@ def createFrameTitle(master, title, corner_radius=6, fg_color="gray30"):
     title.grid(row=0, column=0, columnspan=2, padx=20, pady=20, sticky="ew")
 
     return titleFrame
+
+def validateNumber(n):
+    return n == "" or (n.isdigit() and 0 <= int(n) <= 100)
+
+def validateDate(entry):
+    # Regex padrão para DD/MM/YYYY
+    pattern = re.compile('/\d{2}/\d{4}/')
+    return pattern.match(entry)
