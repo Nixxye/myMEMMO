@@ -1,9 +1,11 @@
 import customtkinter
 import json
+import csv
 import re
 from states.State import State
 
 CATEGORIES_FILE = "./entities/gui/states/data/categories.json"
+CSV_FILE = "./entities/gui/states/data/data.csv"
 
 class Add(State):
     def __init__(self, gui):
@@ -11,8 +13,10 @@ class Add(State):
         self.viewButton = None
         self.addButton = None
         self.checkboxes = []
+        self.type = ""
         
     def enter(self, type):
+        self.type = type
         self.gui.grid_rowconfigure(0, weight=1)
         self.gui.grid_columnconfigure(0, weight=1)
         #FRAMES:
@@ -37,15 +41,12 @@ class Add(State):
         self.categoryFrame.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
 
         self.scoreFrame = createFrameTitle(master=self.mainFrame, title="Score")
-        vcmd = (self.gui.register(validateNumber), '%P')
-        # ARRUMAR PROBLEMA (PLACEHOLDER NÃO ESTÁ APARECENDO)
-        self.scoreEntry = customtkinter.CTkEntry(self.scoreFrame, placeholder_text="0-100", validate="key", validatecommand=vcmd)
+        self.scoreEntry = customtkinter.CTkEntry(self.scoreFrame, placeholder_text="0-100")
         self.scoreFrame.grid(row=3, column=0, padx=20, pady=20, sticky="nsew")
         self.scoreEntry.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
 
         self.dateFrame = createFrameTitle(master=self.mainFrame, title="Date")
-        vcmdDate = (self.gui.register(validateDate), '%P')
-        self.dateEntry = customtkinter.CTkEntry(self.dateFrame, placeholder_text="MM/YYYY", validate="key", validatecommand=vcmdDate)
+        self.dateEntry = customtkinter.CTkEntry(self.dateFrame, placeholder_text="MM/YYYY")
         self.dateFrame.grid(row=4, column=0, padx=20, pady=20, sticky="nsew")
         self.dateEntry.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
 
@@ -60,7 +61,27 @@ class Add(State):
         self.addCategories(type)
 
     def submit(self):
-        pass
+        if not validateNumber(self.scoreEntry.get()):
+            print("score not Validated")
+            return
+        if not validateDate(self.dateEntry.get()):
+            print("date not Validated")
+            return
+        if not validateCheckbox(self.checkboxes):
+            print("checkbox not Validated")
+            return
+        if self.titleEntry.get() == "":
+            print("title not Validated")
+            return
+        validateTextbox(self.reviewTextbox)
+# COLOCAR CAMINHO PARA IMAGEM
+        with open(CSV_FILE, mode="a", encoding='utf-8') as file:
+            writer = csv.writer(file)
+            categories = ""
+            for checkbox in self.checkboxes:
+                if checkbox.get():
+                    categories += checkbox.cget("text") + ", "
+            writer.writerow([self.type, self.titleEntry.get(), self.scoreEntry.get(), self.dateEntry.get(), self.reviewTextbox.get("1.0", "end-1c"), categories])
 
     def returnState(self):
         self.gui.setState(self.gui.chooseType)
@@ -143,6 +164,17 @@ def validateNumber(n):
     return n == "" or (n.isdigit() and 0 <= int(n) <= 100)
 
 def validateDate(entry):
-    # Regex padrão para DD/MM/YYYY
-    pattern = re.compile('/\d{2}/\d{4}/')
+    # Regex padrão para MM/YYYY
+    pattern = re.compile('\d{2}\/\d{4}')
     return pattern.match(entry)
+
+def validateCheckbox(checkboxes):
+    for checkbox in checkboxes:
+        if checkbox.get():
+            return True
+    return False
+
+def validateTextbox(textbox):
+    text = textbox.get("1.0", "end-1c").replace('"', '""')
+    textbox.delete("1.0", "end")
+    textbox.insert("1.0", text)
