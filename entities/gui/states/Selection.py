@@ -7,7 +7,7 @@ class Selection(State):
         self.viewButton = None
         self.addButton = None
         
-    def createButtons(self):
+    def enter(self):
         self.gui.grid_rowconfigure(0, weight=1)
         self.gui.grid_columnconfigure((0, 1), weight=1)
 

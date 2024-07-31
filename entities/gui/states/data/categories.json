@@ -1,0 +1,25 @@
+{
+    "Book": [
+        "Fiction",
+        "Science Fiction",
+        "Biographies"
+    ],
+    "Movie": [
+        "Action",
+        "Comedy",
+        "Drama",
+        "Documentary"
+    ],
+    "Series": [
+        "Drama",
+        "Comedy",
+        "Reality",
+        "Science Fiction"
+    ],
+    "Game": [
+        "RPG",
+        "FPS",
+        "Strategy",
+        "Puzzle"
+    ]
+}

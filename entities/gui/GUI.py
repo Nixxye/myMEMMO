@@ -1,25 +1,29 @@
 import customtkinter
 from states.Selection import Selection
 from states.ChooseType import ChooseType
+from states.Add import Add
 
 class GUI(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         self.geometry("800x600")
+
         self.selection = Selection(self)
         self.chooseType = ChooseType(self)
+        self.add = Add(self)
 
         self.setState(self.selection)
     
-    def setState(self, state):
+    def setState(self, state, **kwargs):
         if self.state is not None:
             self.clearWidgets()
-            state.enter()
+            state.enter(**kwargs)
 
     def clearWidgets(self):
         for widget in self.winfo_children():
             widget.grid_forget()
-        print("Cleared widgets")
+            # widget.destroy()
+        # print("Cleared widgets")
 
 
 
