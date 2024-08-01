@@ -1,3 +1,2 @@
-Type, Name, Score, Date, Review, Categories, ImagePath
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",C:/Users/cjean/OneDrive/Imagens/AW2_wallpaper_horizontal_4K.jpg
-Book,Fire and Blood,90,08/2024,Mt bom!,"Fiction, ",C:/Users/cjean/OneDrive/Imagens/AW2_wallpaper_horizontal_4K.jpg
+Type,Name,Score,Date,Review,Categories,ImagePath
+Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png

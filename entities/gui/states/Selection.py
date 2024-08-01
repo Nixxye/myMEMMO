@@ -21,4 +21,4 @@ class Selection(State):
         self.gui.setState(self.gui.chooseType)
     
     def view(self):
-        pass
+        self.gui.setState(self.gui.view)
