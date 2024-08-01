@@ -1,4 +1,5 @@
 import customtkinter
+from tkinter import filedialog
 import json
 import csv
 import re
@@ -55,10 +56,25 @@ class Add(State):
         self.textFrame.grid(row=5, column=0, padx=20, pady=20, sticky="nsew")
         self.reviewTextbox.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
 
+        self.imageFrame = createFrameTitle(master=self.mainFrame, title="Image")
+        self.imageLabel = customtkinter.CTkLabel(self.imageFrame, text="Select an image")
+        self.imageButton = customtkinter.CTkButton(self.imageFrame, text="Select", command=self.selectFile)
+        self.imageFrame.grid(row=6, column=0, padx=20, pady=20, sticky="nsew")
+        self.imageLabel.grid(row=1, column=0, padx=20, pady=20, sticky="nsew")
+        self.imageButton.grid(row=2, column=0, padx=20, pady=20, sticky="nsew")
+
         self.submitButton = customtkinter.CTkButton(master=self.mainFrame, text="Submit", command=self.submit)
         self.submitButton.grid(row=7, column=0, padx=20, pady=20, sticky="nsew")
 
         self.addCategories(type)
+
+    def selectFile(self):
+        file = filedialog.askopenfile(
+            title="Select an image",
+            filetypes=[("Image files", "*.png *.jpg *.jpeg"), ("All files", "*.*")],
+        )
+        if file:
+            self.imageLabel.configure(text=file.name)
 
     def submit(self):
         if not validateNumber(self.scoreEntry.get()):
@@ -81,7 +97,7 @@ class Add(State):
             for checkbox in self.checkboxes:
                 if checkbox.get():
                     categories += checkbox.cget("text") + ", "
-            writer.writerow([self.type, self.titleEntry.get(), self.scoreEntry.get(), self.dateEntry.get(), self.reviewTextbox.get("1.0", "end-1c"), categories])
+            writer.writerow([self.type, self.titleEntry.get(), self.scoreEntry.get(), self.dateEntry.get(), self.reviewTextbox.get("1.0", "end-1c"), categories, self.imageLabel.cget("text")])
 
     def returnState(self):
         self.gui.setState(self.gui.chooseType)
