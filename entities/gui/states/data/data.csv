@@ -1,33 +1,16 @@
 Type,Name,Score,Date,Review,Categories,ImagePath
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
-Game,Alan Wake 2,100,01/2024,PEFEITO,"Survival Horror, Third Person Shooter, ",./images/AW2.png
+Game,Alan Wake 2,100,01/2024,PERFEITO,"Survival Horror, Third Person Shooter",./images/AW2.png
+Game,The Last of Us Part II,98,06/2020,IMPRESCINDÍVEL,"Action-Adventure, Survival Horror",./images/TLOU2.png
+Game,Red Dead Redemption 2,97,10/2018,OBRA-PRIMA,"Action-Adventure, Open World",./images/RDR2.png
+Game,Elden Ring,95,02/2022,ÉPICO,"Action RPG, Open World",./images/ER.png
+Game,God of War Ragnarok,96,11/2022,ÉPICO,"Action-Adventure, Mythology",./images/GOWR.png
+Game,Hades,93,09/2020,INCRÍVEL,"Roguelike, Action RPG",./images/Hades.png
+Game,Cyberpunk 2077,90,12/2020,CONTROVERSO,"Action RPG, Open World",./images/CP2077.png
+Game,Resident Evil Village,92,05/2021,ATMOSFÉRICO,"Survival Horror, First Person Shooter",./images/REVillage.png
+Game,Horizon Forbidden West,89,02/2022,EXPANSIVO,"Action RPG, Open World",./images/HFW.png
+Game,Death Stranding,91,11/2019,ÚNICO,"Action-Adventure, Strand Game",./images/DS.png
+Game,Spider-Man: Miles Morales,85,11/2020,DIVERTIDO,"Action-Adventure, Superhero",./images/SMM.png
+Game,Assassin's Creed Valhalla,88,11/2020,IMERSIVO,"Action RPG, Open World",./images/ACV.png
+Game,Ghost of Tsushima,91,07/2020,MEMORÁVEL,"Action-Adventure, Open World",./images/GOT.png
+Game,Doom Eternal,89,03/2020,ADRENALINA PURA,"First Person Shooter",./images/DE.png
+Game,Final Fantasy VII Remake,92,04/2020,EMOCIONANTE,"JRPG, Action RPG",./images/FF7R.png

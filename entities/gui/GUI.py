@@ -3,6 +3,7 @@ from states.Selection import Selection
 from states.ChooseType import ChooseType
 from states.Add import Add
 from states.View import View
+from states.Search import Search
 
 class GUI(customtkinter.CTk):
     def __init__(self):
@@ -13,6 +14,7 @@ class GUI(customtkinter.CTk):
         self.chooseType = ChooseType(self)
         self.add = Add(self)
         self.view = View(self)
+        self.search = Search(self)
 
         self.setState(self.selection)
     

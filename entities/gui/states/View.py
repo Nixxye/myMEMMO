@@ -20,11 +20,11 @@ class View(State):
         self.headerFrame.grid_columnconfigure(1, weight=5)
 
         self.returnButton = customtkinter.CTkButton(master=self.headerFrame, command=self.returnState) #ADD image later
-        self.title = customtkinter.CTkLabel(master=self.headerFrame, text="View")
+        self.searchButton = customtkinter.CTkButton(master=self.headerFrame, command=self.search, text="Search") #ADD image later
 
         self.headerFrame.grid(row=0, column=0, padx=20, pady=20, columnspan=2, sticky="nsew")
         self.returnButton.grid(row=0, column=0, padx=20, pady=20, sticky="nsew")
-        self.title.grid(row=0, column=1, padx=20, pady=20, sticky="nsew")
+        self.searchButton.grid(row=0, column=1, padx=20, pady=20, sticky="nsew")
 
         self.mainFrame = customtkinter.CTkScrollableFrame(master=self.gui)
         self.mainFrame.grid(row=1, column=0, columnspan=2, sticky="nsew")
@@ -61,4 +61,7 @@ class View(State):
         button.configure(text=originalText)
 
     def returnState(self):
-        self.gui.setState(self.gui.add, type="Game")
+        self.gui.setState(self.gui.selection)
+
+    def search(self):
+        self.gui.setState(self.gui.search)
